@@ -12,16 +12,12 @@
 
     <artifactId>products</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>products</name>
-    <description>Demo project for Spring with Kafka</description>
+    <name>orders</name>
+    <description>The orders service.</description>
 
     <dependencies>
 
         <!-- Spring -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter</artifactId>
-        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
@@ -29,6 +25,10 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.kafka</groupId>
+            <artifactId>spring-kafka</artifactId>
         </dependency>
 
         <!-- Kotlin -->
@@ -41,6 +41,16 @@
             <groupId>org.jetbrains.kotlin</groupId>
             <artifactId>kotlin-stdlib</artifactId>
             <version>${kotlin.version}</version>
+        </dependency>
+
+        <!-- Kafka protocol -->
+        <dependency>
+            <groupId>org.apache.avro</groupId>
+            <artifactId>avro-compiler</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.apicurio</groupId>
+            <artifactId>apicurio-registry-serdes-avro-serde</artifactId>
         </dependency>
 
         <!-- Test -->
@@ -83,6 +93,49 @@
                         <version>${kotlin.version}</version>
                     </dependency>
                 </dependencies>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.avro</groupId>
+                <artifactId>avro-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>schema</goal>
+                        </goals>
+                        <configuration>
+                            <sourceDirectory>${project.basedir}/src/main/resources/avro/schema</sourceDirectory>
+                            <includes>
+                                <include>**/*.avsc</include>
+                            </includes>
+                            <outputDirectory>${project.build.directory}/generated-sources/avro/schema</outputDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>io.apicurio</groupId>
+                <artifactId>apicurio-registry-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>register</goal>
+                        </goals>
+                        <configuration>
+                            <registryUrl>http://localhost:8081/apis/registry/v2</registryUrl>
+                            <artifacts>
+                                <artifact>
+                                    <groupId>io.dietschi.edu.spring_kafka_handson</groupId>
+                                    <artifactId>orders-placed</artifactId>
+                                    <file>${project.basedir}/src/main/resources/avro/schema/order-placed.avsc</file>
+                                    <type>AVRO</type>
+                                    <ifExists>RETURN_OR_UPDATE</ifExists>
+                                </artifact>
+                            </artifacts>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>

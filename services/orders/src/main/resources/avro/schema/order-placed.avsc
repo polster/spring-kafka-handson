@@ -1,0 +1,28 @@
+{
+  "name": "OrderPlaced",
+  "namespace": "io.dietschi.edu.spring_kafka_handson.schema.avro",
+  "type": "record",
+  "doc": "Avro Schema definition for OrderPlaced event",
+  "fields" : [ {
+    "name" : "id",
+    "type" : "string"
+  }, {
+    "name" : "customerId",
+    "type" : "string"
+  }, {
+    "name" : "productId",
+    "type" : "string"
+  }, {
+    "name" : "quantity",
+    "type" : "int"
+  }, {
+    "name" : "price",
+    "type" : "double"
+  }, {
+    "name" : "orderDate",
+    "type" : {
+      "type" : "long",
+      "logicalType" : "timestamp-millis"}
+  }
+  ]
+}

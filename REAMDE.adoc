@@ -1,1 +1,8 @@
 = Spring Kafka Hands-on
+:toc:
+
+== Introduction
+
+This project demonstrates how to use Spring Kafka and Spring Boot to implement simple event-driven microservice, while using hexagonal architecture to decouple the business logic from the infrastructure and ease testing.
+
+== Get Started

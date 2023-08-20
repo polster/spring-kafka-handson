@@ -1,8 +1,27 @@
-logging:
-  level:
-    root: INFO
 server:
   port: 4502
+
 spring:
   application:
     name: orders
+  kafka:
+    bootstrap-servers: localhost:9092
+    properties:
+      apicurio:
+        registry:
+          url: http://localhost:8081/api
+          artifact-id: io.apicurio.registry.utils.serde.strategy.TopicIdStrategy
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: io.apicurio.registry.serde.avro.AvroKafkaSerializer
+
+app:
+  kafka:
+    topics:
+      orders:
+        name: local.exchange.cmd.orders.1
+
+
+logging:
+  level:
+    root: INFO

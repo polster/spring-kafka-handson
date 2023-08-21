@@ -2,6 +2,7 @@ package io.dietschi.edu.spring_kafka_handson.orders.adapters.inbound.rest
 
 import io.dietschi.edu.spring_kafka_handson.orders.adapters.toModel
 import io.dietschi.edu.spring_kafka_handson.orders.application.usecases.PlaceOrderUseCase
+import io.swagger.v3.oas.annotations.Operation
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
@@ -14,11 +15,13 @@ class OrdersController(
     private val placeOrderUseCase: PlaceOrderUseCase
 ) {
 
+    @Operation(summary = "Place a new order.")
     @PostMapping
     fun create(@RequestBody placeOrderRequest: PlaceOrderRequest) {
         placeOrderUseCase.placeOrder(placeOrderRequest.toModel())
     }
 
+    @Operation(summary = "Get all orders.")
     @GetMapping
     fun all(): List<PlaceOrderRequest> {
         // TODO

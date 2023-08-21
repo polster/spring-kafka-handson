@@ -10,7 +10,7 @@
         <relativePath>../../pom.xml</relativePath>
     </parent>
 
-    <artifactId>products</artifactId>
+    <artifactId>orders</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>orders</name>
     <description>The orders service.</description>
@@ -51,6 +51,12 @@
         <dependency>
             <groupId>io.apicurio</groupId>
             <artifactId>apicurio-registry-serdes-avro-serde</artifactId>
+        </dependency>
+
+        <!-- Swagger -->
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
         </dependency>
 
         <!-- Test -->
@@ -126,8 +132,8 @@
                             <registryUrl>http://localhost:8081/apis/registry/v2</registryUrl>
                             <artifacts>
                                 <artifact>
-                                    <groupId>io.dietschi.edu.spring_kafka_handson</groupId>
-                                    <artifactId>orders-placed</artifactId>
+                                    <groupId>default</groupId>
+                                    <artifactId>local.exchange.cmd.orders.1</artifactId>
                                     <file>${project.basedir}/src/main/resources/avro/schema/order-placed.avsc</file>
                                     <type>AVRO</type>
                                     <ifExists>RETURN_OR_UPDATE</ifExists>

@@ -21,6 +21,7 @@
         <kotlin.compiler.jvmTarget>17</kotlin.compiler.jvmTarget>
         <kotlin.version>1.9.0</kotlin.version>
         <apache-avro.version>1.11.2</apache-avro.version>
+        <springdoc.version>2.2.0</springdoc.version>
         <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
         <apicurio.version>2.4.4.Final</apicurio.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -56,6 +57,18 @@
                 <version>${apicurio.version}</version>
             </dependency>
 
+            <!-- Swagger -->
+            <dependency>
+                <groupId>org.springdoc</groupId>
+                <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+                <version>${springdoc.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springdoc</groupId>
+                <artifactId>springdoc-openapi-starter-webmvc-api</artifactId>
+                <version>${springdoc.version}</version>
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
 
@@ -70,7 +83,7 @@
                     <version>${kotlin.version}</version>
                 </plugin>
 
-                <!-- Avro -->
+                <!-- Kafka protocol -->
                 <plugin>
                     <groupId>org.apache.avro</groupId>
                     <artifactId>avro-maven-plugin</artifactId>

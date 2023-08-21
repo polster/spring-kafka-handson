@@ -9,18 +9,21 @@ spring:
     properties:
       apicurio:
         registry:
-          url: http://localhost:8081/api
-          artifact-id: io.apicurio.registry.utils.serde.strategy.TopicIdStrategy
+          url: http://localhost:8081/apis/registry/v2
+          artifact-resolver-strategy: io.apicurio.registry.serde.strategy.SimpleTopicIdStrategy
     producer:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: io.apicurio.registry.serde.avro.AvroKafkaSerializer
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
 
 app:
   kafka:
     topics:
       orders:
         name: local.exchange.cmd.orders.1
-
 
 logging:
   level:

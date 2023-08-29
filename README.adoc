@@ -1,0 +1,65 @@
+= Spring Kafka Hands-on
+:toc:
+
+== Introduction
+
+=== What's this?
+
+This project demonstrates how to use Spring Kafka and Spring Boot to implement simple event-driven microservice, while using hexagonal architecture to decouple the business logic from the infrastructure and ease testing.
+
+=== Pre-requisites
+
+* Java 17
+* Maven 3.8
+* Docker, Docker Compose
+* Make
+
+=== Infrastructure
+
+The included infrastructure for local testing consists of:
+
+|===
+| Resource | Description
+
+| http://localhost:8081/ui/artifacts[]
+| Schema registry UI
+
+| http://localhost:4502/swagger-ui/index.html[]
+| Swagger UI
+
+| http://localhost:8083[]
+| Kafka UI
+|===
+
+=== Architecture
+
+. link:docs/hexagonal-architecture.adoc[Hexagonal architecture]
+. link:docs/serde-kafka-avro.adoc[Serde with Kafka and Avro]
+
+== Get Started
+
+=== Initial setup
+
+* Git clone this repo and cd into it
+* Provision the local dev env:
+[source,bash]
+----
+make docker-infra-up
+----
+* Check its status:
+[source,bash]
+----
+make docker-infra-status
+----
+
+=== Verification
+
+* Build all modules and start one of the services:
+[source,bash]
+----
+mvn clean install
+mvn spring-boot:run -pl services/orders
+----
+* Check the schema registry UI at http://localhost:8081/ui/artifacts[] and verify that the `OrderPlaced` schema is registered
+* Check the Kafka UI at http://localhost:8083[] and verify that the `orders` topic is created
+* Check the Swagger UI at http://localhost:4502/swagger-ui/index.html[] and verify that the `orders` endpoint is available (feel free to POST a new order)

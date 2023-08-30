@@ -6,7 +6,7 @@ import io.dietschi.edu.spring_kafka_handson.schema.avro.OrderPlaced
 import java.time.ZoneOffset
 
 fun PlaceOrderRequest.toModel(): Order {
-    return Order(
+    return Order.validated(
         customerId = this.customerId,
         productId = this.productId,
         quantity = this.quantity,

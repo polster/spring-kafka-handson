@@ -1,0 +1,6 @@
+= Serde with Kafka and Avro
+:toc:
+
+== Introduction
+
+=== What's this?

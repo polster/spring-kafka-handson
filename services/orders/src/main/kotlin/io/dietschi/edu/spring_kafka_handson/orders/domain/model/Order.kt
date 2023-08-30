@@ -10,4 +10,23 @@ data class Order(
     val quantity: Int,
     val price: Double,
     val orderDateTime: LocalDateTime = LocalDateTime.now()
-)
+) {
+    companion object {
+        fun validated(
+            customerId: UUID,
+            productId: UUID,
+            quantity: Int,
+            price: Double
+        ): Order {
+            require(quantity > 0) { "Quantity must be greater than 0" }
+            require(price > 0) { "Price must be greater than 0" }
+
+            return Order(
+                customerId = customerId,
+                productId = productId,
+                quantity = quantity,
+                price = price
+            )
+        }
+    }
+}

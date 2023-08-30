@@ -1,7 +1,9 @@
 package io.dietschi.edu.spring_kafka_handson.orders.adapters.inbound.rest
 
 import io.dietschi.edu.spring_kafka_handson.orders.adapters.toModel
+import io.dietschi.edu.spring_kafka_handson.orders.application.usecases.FetchOrdersUseCase
 import io.dietschi.edu.spring_kafka_handson.orders.application.usecases.PlaceOrderUseCase
+import io.dietschi.edu.spring_kafka_handson.orders.domain.model.Order
 import io.swagger.v3.oas.annotations.Operation
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
@@ -12,7 +14,8 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 @RequestMapping("/orders")
 class OrdersController(
-    private val placeOrderUseCase: PlaceOrderUseCase
+    private val placeOrderUseCase: PlaceOrderUseCase,
+    private val fetchOrdersUseCase: FetchOrdersUseCase
 ) {
 
     @Operation(summary = "Place a new order.")
@@ -23,8 +26,5 @@ class OrdersController(
 
     @Operation(summary = "Get all orders.")
     @GetMapping
-    fun all(): List<PlaceOrderRequest> {
-        // TODO
-        return emptyList()
-    }
+    fun all(): List<Order> = fetchOrdersUseCase.fetchOrders()
 }

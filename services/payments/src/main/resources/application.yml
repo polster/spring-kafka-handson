@@ -4,5 +4,22 @@ logging:
 server:
   port: 4501
 spring:
-    application:
-        name: payments
+  application:
+    name: payments
+  kafka:
+    bootstrap-servers: localhost:9092
+    properties:
+      apicurio:
+        registry:
+          use-specific-avro-reader: true
+          url: http://localhost:8081/apis/registry/v2
+          artifact-resolver-strategy: io.apicurio.registry.serde.strategy.SimpleTopicIdStrategy
+    consumer:
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: io.apicurio.registry.serde.avro.AvroKafkaDeserializer
+
+app:
+  kafka:
+    topics:
+      orders:
+        name: local.exchange.cmd.orders.1

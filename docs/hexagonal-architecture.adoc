@@ -3,11 +3,13 @@
 
 == Introduction
 
+=== What's this?
+
 When it comes to structuring and layering your application, there are many different approaches. One of the most popular is the Hexagonal Architecture, also known as Ports and Adapters. This architecture is a great way to decouple your application from the framework you are using, and to make your application more testable.
 
 As often with design, there are many ways to implement it. This guide will propose one way, while going beyond just simple hello world.
 
-== The Hexagonal Architecture
+== Hexagonal Architecture
 
 === Principles
 

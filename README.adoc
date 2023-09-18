@@ -34,7 +34,7 @@ The included infrastructure for local testing consists of:
 === Architecture
 
 . link:docs/hexagonal-architecture.adoc[Hexagonal architecture]
-. link:docs/serde-kafka-avro.adoc[Serde with Kafka and Avro]
+. link:docs/serde-kafka-avro.adoc[Messaging with Kafka and Avro]
 
 == Get Started
 

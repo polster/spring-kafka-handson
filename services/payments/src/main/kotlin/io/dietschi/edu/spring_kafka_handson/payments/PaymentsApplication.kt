@@ -1,4 +1,4 @@
-package io.dietschi.edu.spring_kafka_handson.products
+package io.dietschi.edu.spring_kafka_handson.payments
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication

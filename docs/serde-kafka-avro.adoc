@@ -44,3 +44,11 @@ To provision the topic, in this example a programmatic way is used. See the link
 === Kafka infra setup
 
 For local exploration, the Kafka setup including some useful tools has been kept as simple as possible as well. Notably the Kakfa version is still using Zookeeper and a single node setup with Docker compose and Strimzi. For more details see the link:../etc/docker-compose/local-dev-infra.yml[docker-compose.yml] file.
+
+=== Integration with Spring Boot
+
+When in comes to integration with Spring Boot, there are multiple options available. To keep things simple in this example `Spring Kafka` has been used as the client library. For more details, see the following resources:
+
+* link:../services/orders/src/main/kotlin/io/dietschi/edu/spring_kafka_handson/orders/adapters/outbound/messaging/KafkaOrderProducer.kt[KafkaOrderProducer.kt]
+* link:../services/payments/src/main/kotlin/io/dietschi/edu/spring_kafka_handson/payments/adapters/inbound/messaging/KafkaOrderListener.kt[KafkaOrderListener.kt]
+* link:../services/orders/src/main/kotlin/io/dietschi/edu/spring_kafka_handson/orders/adapters/outbound/messaging/KafkaOrderRepository.kt[KafkaOrderRepository.kt]

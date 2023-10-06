@@ -11,9 +11,9 @@ class KafkaOrderProducer(
     kafkaProperties: KafkaProperties
 ): OrderProducer {
 
-    private val topic = kafkaProperties.topics["orders"]!!.name
+    private val topic = kafkaProperties.topic("orders")
 
     override fun event(orderPlaced: OrderPlaced) {
-        kafkaTemplate.send(topic, orderPlaced)
+        kafkaTemplate.send(topic.name, orderPlaced)
     }
 }

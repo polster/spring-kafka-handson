@@ -11,8 +11,8 @@ class KafkaConfig {
     @Bean
     fun ordersTopic(kafkaProperties: KafkaProperties): NewTopic {
 
-        val topic = kafkaProperties.topics["orders"]!!.name
-        return TopicBuilder.name(topic)
+        val topic = kafkaProperties.topic("orders")
+        return TopicBuilder.name(topic.name)
             .partitions(10)
             .replicas(1)
             .build()

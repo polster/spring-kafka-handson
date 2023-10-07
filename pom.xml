@@ -11,9 +11,9 @@
     </parent>
 
     <groupId>io.dietschi.edu.spring_kafka_handson</groupId>
-    <artifactId>root</artifactId>
+    <artifactId>spring-kafka-handson-root</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>root</name>
+    <name>spring-kafka-handson-root</name>
     <description>Demo project for Spring with Kafka</description>
     <packaging>pom</packaging>
 
@@ -24,9 +24,14 @@
         <springdoc.version>2.2.0</springdoc.version>
         <logback.version>1.4.11</logback.version>
         <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
+        <sonar-maven-plugin.version>3.10.0.2594</sonar-maven-plugin.version>
         <apicurio.version>2.4.4.Final</apicurio.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+        <!-- Sonar project config -->
+        <sonar.host.url>https://sonarcloud.io</sonar.host.url>
+        <sonar.organization>polster</sonar.organization>
     </properties>
 
     <modules>
@@ -101,6 +106,13 @@
                     <groupId>io.apicurio</groupId>
                     <artifactId>apicurio-registry-maven-plugin</artifactId>
                     <version>${apicurio.version}</version>
+                </plugin>
+
+                <!-- Sonar -->
+                <plugin>
+                    <groupId>org.sonarsource.scanner.maven</groupId>
+                    <artifactId>sonar-maven-plugin</artifactId>
+                    <version>${sonar-maven-plugin.version}</version>
                 </plugin>
 
             </plugins>

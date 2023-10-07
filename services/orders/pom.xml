@@ -125,31 +125,41 @@
                     </execution>
                 </executions>
             </plugin>
-            <plugin>
-                <groupId>io.apicurio</groupId>
-                <artifactId>apicurio-registry-maven-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <phase>generate-sources</phase>
-                        <goals>
-                            <goal>register</goal>
-                        </goals>
-                        <configuration>
-                            <registryUrl>http://localhost:8081/apis/registry/v2</registryUrl>
-                            <artifacts>
-                                <artifact>
-                                    <groupId>default</groupId>
-                                    <artifactId>local.exchange.cmd.orders.1</artifactId>
-                                    <file>${project.basedir}/src/main/resources/avro/schema/order-placed.avsc</file>
-                                    <type>AVRO</type>
-                                    <ifExists>RETURN_OR_UPDATE</ifExists>
-                                </artifact>
-                            </artifacts>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
         </plugins>
     </build>
+
+    <profiles>
+        <profile>
+            <id>schema</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>io.apicurio</groupId>
+                        <artifactId>apicurio-registry-maven-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <phase>generate-sources</phase>
+                                <goals>
+                                    <goal>register</goal>
+                                </goals>
+                                <configuration>
+                                    <registryUrl>http://localhost:8081/apis/registry/v2</registryUrl>
+                                    <artifacts>
+                                        <artifact>
+                                            <groupId>default</groupId>
+                                            <artifactId>local.exchange.cmd.orders.1</artifactId>
+                                            <file>${project.basedir}/src/main/resources/avro/schema/order-placed.avsc</file>
+                                            <type>AVRO</type>
+                                            <ifExists>RETURN_OR_UPDATE</ifExists>
+                                        </artifact>
+                                    </artifacts>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 
 </project>

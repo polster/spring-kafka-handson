@@ -57,7 +57,7 @@ make docker-infra-status
 * Build all modules and start one of the services:
 [source,bash]
 ----
-mvn clean install
+mvn clean install -Pschema
 mvn spring-boot:run -pl services/orders
 ----
 * Check the schema registry UI at http://localhost:8081/ui/artifacts[] and verify that the `OrderPlaced` schema is registered
